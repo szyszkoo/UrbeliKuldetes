@@ -5,8 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UrbeliKuldetes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Title="MainWindow" Height="800" Width="1200" ResizeMode="NoResize" Icon="./Pictures/rocket-icon.png">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="Width" Value="170"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="Background" Value="Gainsboro"/>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="0,0,2,0">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Pictures/background.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="298*"/>
+            <ColumnDefinition Width="298*"/>
+            <ColumnDefinition Width="553*"/>
+        </Grid.ColumnDefinitions>
+        <Button Content="Scan" Name="ScanBtn" HorizontalAlignment="Left" Margin="64,30,0,0" VerticalAlignment="Top" Click="ScanBtn_Click"/>
+        <Button Content="Move To" Name="MoveToBtn" HorizontalAlignment="Left" Margin="64,100,0,0" VerticalAlignment="Top" Click="MoveToBtn_Click" />
+        <Button Content="Produce" Name="ProduceBtn" HorizontalAlignment="Left" Margin="64,170,0,0" VerticalAlignment="Top" Click="ProduceBtn_Click"/>
+        <Button Content="Harvest" Name="HarvestBtn" HorizontalAlignment="Left" Margin="64,240,0,0" VerticalAlignment="Top" Click="HarvestBtn_Click"/>
+        <Button Content="Repair" Name="RepairBtn" HorizontalAlignment="Left" Margin="64,310,0,0" VerticalAlignment="Top" Click="RepairBtn_Click"/>
+        <Button Content="Order" Name="OrderBtn" HorizontalAlignment="Left" Margin="64,380,0,0" VerticalAlignment="Top" Click="OrderBtn_Click"/>
+
+        <Grid Name ="ParametersBox" Visibility="Hidden" Grid.Column="1" Margin="42,30,49,30" HorizontalAlignment="Center" Width="207">
+
+            <Button Content="Chaarr" x:Name="ChaarrBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Click="ChaarrBtn_Click"/>
+            <Button Content="Esthajnalcsillag" x:Name="EsthBtn" HorizontalAlignment="Left" Margin="0,70,0,0" VerticalAlignment="Top" Click="EsthBtn_Click"/>
+            <Button Content="Produce" x:Name="ShuttleBtn" HorizontalAlignment="Left" Margin="0,140,0,0" VerticalAlignment="Top" Click="ShuttleBtn_Click" Width="170"/>
+            <Button Content="Harvest" x:Name="AsteroidsBtn" HorizontalAlignment="Left" Margin="0,210,0,0" VerticalAlignment="Top" Click="AsteroidsBtn_Click"/>
+            <Button Content="Repair" x:Name="PoludnicaBtn" HorizontalAlignment="Left" Margin="0,280,0,0" VerticalAlignment="Top" Click="PoludnicaBtn_Click"/>
+
+        </Grid>
+
+
+
+
+
     </Grid>
 </Window>

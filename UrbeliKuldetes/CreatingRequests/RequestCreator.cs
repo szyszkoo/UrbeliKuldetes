@@ -8,7 +8,7 @@ using RestSharp;
 
 namespace CommunicationApp.CreatingRequests
 {
-    class CreateRequest
+    class RequestCreator
     {
         public static RestRequest CreatePOSTRequest(string payload)
         {
