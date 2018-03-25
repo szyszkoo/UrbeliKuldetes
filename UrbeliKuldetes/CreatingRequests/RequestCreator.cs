@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Net;
 using RestSharp;
 
-namespace CommunicationApp.CreatingRequests
+namespace UrbeliKuldetes.CreatingRequests
 {
     class RequestCreator
     {

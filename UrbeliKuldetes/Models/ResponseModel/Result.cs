@@ -1,4 +1,4 @@
-﻿using CommunicationApp.Models.ResponseModel;
+﻿using UrbeliKuldetes.Models.ResponseModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace CommunicationApp.Models
+namespace UrbeliKuldetes.Models
 {
     class Result
     {

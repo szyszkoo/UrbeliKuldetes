@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommunicationApp.Models.ResponseModel
+namespace UrbeliKuldetes.Models.ResponseModel
 {
     public struct Scores
     {

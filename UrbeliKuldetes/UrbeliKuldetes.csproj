@@ -76,6 +76,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Commnication\CommandsExcecutor.cs" />
+    <Compile Include="Commnication\DescribeExcecutor.cs" />
     <Compile Include="CreatingPayload\PayloadCreator.cs" />
     <Compile Include="CreatingRequests\RequestCreator.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -85,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\CommandEnum.cs" />
+    <Compile Include="Models\ParametersEnum.cs" />
     <Compile Include="Models\ResponseModel\Params.cs" />
     <Compile Include="Models\ResponseModel\Result.cs" />
     <Compile Include="Models\ResponseModel\Scores.cs" />

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using CommunicationApp.Models;
+﻿using Newtonsoft.Json;
+using UrbeliKuldetes.Models;
 
-namespace CommunicationApp.CreatingPayload
+namespace UrbeliKuldetes.CreatingPayload
 {
     class PayloadCreator
     {
@@ -14,7 +9,7 @@ namespace CommunicationApp.CreatingPayload
         public string Login { get; }
         public string Token { get; }
         public string Parameter { get; }
-        public decimal Value { get; }
+        public string Value { get; }
 
         //creating payload with no parameter
         public PayloadCreator(Commands command, string login, string token)
@@ -24,21 +19,33 @@ namespace CommunicationApp.CreatingPayload
             Token = token;
         }
         //creating payload with one parameter
-        public PayloadCreator(Commands command, string parameter, string login, string token)
+        public PayloadCreator(Commands command, Parameters parameter, string login, string token)
         {
             Command = command.ToString();
             Login = login;
             Token = token;
-            Parameter = parameter;
+            Parameter = parameter.ToString();
         }
-        //creating payload with a parameter and a value
-        public PayloadCreator(Commands command, string parameter, decimal value, string login, string token )
+
+        //TODO : how to send Produce Supplies ????? (decimal Value)
+
+        ////creating payload with a parameter and a decimal value
+        //public PayloadCreator(Commands command, Parameters parameter, decimal value, string login, string token )
+        //{
+        //    Command = command.ToString();
+        //    Login = login;
+        //    Token = token;
+        //    Parameter = parameter.ToString();
+        //    Value = value;
+        //}
+        //payload with a parameter and enum  value (Order Command)
+        public PayloadCreator ( Commands command, Parameters parameter, Parameters value, string login, string token )
         {
-            Command = command.ToString();
+            Command = command.ToString ( );
             Login = login;
             Token = token;
-            Parameter = parameter;
-            Value = value;
+            Parameter = parameter.ToString ( );
+            Value = value.ToString();
         }
         public string ToJson()
         {
