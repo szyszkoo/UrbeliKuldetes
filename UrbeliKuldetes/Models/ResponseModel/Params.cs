@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace UrbeliKuldetes.Models.ResponseModel
 {
-    public struct Params
+    public class Params
     {
         public decimal SavedScience { get; set; }
         public decimal SavedSurvivors { get; set; }
@@ -18,5 +19,17 @@ namespace UrbeliKuldetes.Models.ResponseModel
         public decimal PoludnicaEnergy { get; set; }
         public decimal ExpeditionMatter { get; set; }
         public decimal ExpeditionEnergy { get; set; }
+
+
+        public string GetParamsNames ( )
+        {
+            string paramsNamesAsString="";
+            var properties = TypeDescriptor.GetProperties ( this.GetType ( ) );
+            for ( int i = 0; i < properties.Count; i++ )
+            {
+                paramsNamesAsString = paramsNamesAsString + properties[i].Name + "\n";
+            }
+            return paramsNamesAsString;
+        }
     }
 }

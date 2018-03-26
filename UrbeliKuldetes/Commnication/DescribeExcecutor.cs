@@ -22,9 +22,6 @@ namespace UrbeliKuldetes.Commnication
             //if ( describeResponse.StatusCode == HttpStatusCode.OK )
 
             return JsonConvert.DeserializeObject<Result> ( describeResponse.Content ); 
-            
-            
-
         }
     }
 }

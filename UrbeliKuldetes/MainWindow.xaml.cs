@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ using System.Windows.Shapes;
 using UrbeliKuldetes.Commnication;
 using UrbeliKuldetes.CreatingPayload;
 using UrbeliKuldetes.Models;
+using UrbeliKuldetes.Models.ResponseModel;
 
 namespace UrbeliKuldetes
 {
@@ -29,6 +31,7 @@ namespace UrbeliKuldetes
         private Commands command;
         private Parameters parameter;
         private Result result;
+        private Params resultParams = new Params ( );
 
 
         public MainWindow ( )
@@ -147,17 +150,18 @@ namespace UrbeliKuldetes
         {
             ParametersBox.Visibility = Visibility.Hidden;
             ParametersBoxProduce.Visibility = Visibility.Hidden;
+            ParametersBoxRepair.Visibility = Visibility.Hidden;
+            
         }
 
         private void SendRequestBtn_Click ( object sender, RoutedEventArgs e )
         {
-            if(!parameter.Equals("") && !command.Equals(""))
+            if(!parameter.ToString().Equals("") && !command.ToString().Equals(""))
             {
-                var execute = new CommandsExcecutor ( );
-                result = execute.Execute ( endpoint, command, parameter);
-                Turn.Text = result.Turn.ToString();
-                Location.Text = result.Location;
-                IsItOver.Text = result.IsTerminated.ToString ( );
+                // TODO: a co jesli null ????????????????????????????????????
+                var executor = new CommandsExcecutor ( );
+                result = executor.Execute ( endpoint, command, parameter);
+                UpdateInfo ( result );
             }
             else
             {
@@ -182,5 +186,82 @@ namespace UrbeliKuldetes
             parameter = Parameters.Partialshuttle;
         }
         #endregion
+
+        private void RestartBtn_Click ( object sender, RoutedEventArgs e )
+        {
+            MessageBox.Show ( "Your simulation will be restared now " );
+            var restarter = new CommandsExcecutor ( );
+            restarter.RestartSimulation ( endpoint);
+            CleanInfo ( );
+            
+        }
+
+        private void Window_MouseLeftButtonDown ( object sender, MouseButtonEventArgs e )
+        {
+            CurrentRequest.Text = command.ToString ( ) + "\n" + parameter.ToString ( );
+
+        }
+        private void UpdateInfo(Result result)
+        {
+            Turn.Text = result.Turn.ToString ( );
+            Location.Text = result.Location;
+            IsItOver.Text = result.IsTerminated.ToString ( );
+            foreach(var evnt in result.LastTurnEvents)
+            {
+                LastTurnEv.Text = LastTurnEv.Text + evnt +"\n";
+            }
+            foreach ( var equipment in result.Equipments )
+            {
+                Equipment.Text = Equipment.Text + equipment + "\n";
+            }
+            foreach(var log in result.LogBook)
+            {
+                Logs.Text = Logs.Text + log + "\n";
+            }
+            ParamsNames.Text = result.Parameters.GetParamsNames ( );
+            UpdateParamsValues ( result.Parameters );
+            ScoresNames.Text = result.AllScores.GetScoresNames ( );
+            UpdateScoresValues ( result.AllScores );
+        }
+        private void CleanInfo ( )
+        {
+            LastTurnEv.Text = "";
+            Equipment.Text = "";
+            Logs.Text = "";
+        }
+
+
+        private void UpdateParamsValues(Params receivedParams)
+        {
+            StringBuilder paramsValues = new StringBuilder ( );
+
+            paramsValues.AppendLine(receivedParams.SavedScience.ToString ( ));
+            paramsValues.AppendLine( receivedParams.SavedSurvivors.ToString ( ));
+            paramsValues.AppendLine( receivedParams.Knowledge.ToString ( ));
+            paramsValues.AppendLine(receivedParams.CrewDeaths.ToString ( ));
+            paramsValues.AppendLine(receivedParams.SurvivorDeaths.ToString ( ));
+            paramsValues.AppendLine(receivedParams.ChaarrHatred.ToString ( ));
+            paramsValues.AppendLine( receivedParams.PoludnicaMatter.ToString ( ));
+            paramsValues.AppendLine( receivedParams.PoludnicaEnergy.ToString ( ));
+            paramsValues.AppendLine( receivedParams.ExpeditionMatter.ToString ( ));
+            paramsValues.AppendLine( receivedParams.ExpeditionEnergy.ToString ( ));
+
+
+            ParamsValue.Text = paramsValues.ToString();
+        }
+        private void UpdateScoresValues(Scores receivedScores)
+        {
+            StringBuilder scoresValues = new StringBuilder ( );
+
+            scoresValues.AppendLine ( receivedScores.SurvivorsScore.ToString ( ) );
+            scoresValues.AppendLine ( receivedScores.ScienceScore.ToString ( ) );
+            scoresValues.AppendLine ( receivedScores.CrewMalus.ToString ( ) );
+            scoresValues.AppendLine ( receivedScores.KnowledgeScore.ToString ( ) );
+            scoresValues.AppendLine ( receivedScores.EventScore.ToString ( ) );
+            scoresValues.AppendLine ( receivedScores.TotalScore.ToString ( ) );
+
+
+            ScoresValues.Text = scoresValues.ToString ( );
+        }
     }
 }
