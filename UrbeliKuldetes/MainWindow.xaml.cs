@@ -27,6 +27,9 @@ namespace UrbeliKuldetes
     {
         // TODO: manage login and token better, somehow
         // and manage the endpoint - a toggle switch ?
+        // TODO: delete login and token out of here, it should be only temporary
+        private static string Login = "agata.szysz@gmail.com.google";
+        private static string Token = "40FEBC05C9F74D4F53503794F1368B6A";
         private string endpoint;
         private Commands command;
         private Parameters parameter;
@@ -42,10 +45,13 @@ namespace UrbeliKuldetes
             this.Title = "Space Mission";
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
+
         private void Window_MouseLeftButtonDown ( object sender, MouseButtonEventArgs e )
         {
+            // TODO: naprawić wyswietlanie poludnica energy i poludnica matter , naprawić scores
             CurrentRequest.Text = command.ToString ( ) + "\n" + parameter.ToString ( )+"\t"+value;
-
+            result = DescribeExecutor.Describe ( Login, Token );
+            UpdateInfo ( result );
         }
         #region Commands buttons
         private void ScanBtn_Click ( object sender, RoutedEventArgs e )
@@ -158,12 +164,13 @@ namespace UrbeliKuldetes
             ParametersBox.Visibility = Visibility.Hidden;
             ParametersBoxProduce.Visibility = Visibility.Hidden;
             ParametersBoxRepair.Visibility = Visibility.Hidden;
+            SuppliesSlider.Visibility = Visibility.Hidden;
             this.value = null;
             
         }
         private void RestartBtn_Click ( object sender, RoutedEventArgs e )
         {
-            MessageBox.Show ( "Your simulation will be restared now " );
+            MessageBox.Show ( "Your simulation will be restarted now " );
             var restarter = new CommandsExecutor ( );
             result = restarter.RestartSimulation ( endpoint );
             if ( result != null )
@@ -175,7 +182,6 @@ namespace UrbeliKuldetes
 
         private void SendRequestBtn_Click ( object sender, RoutedEventArgs e )
         {
-                // TODO: a co jesli null ????????????????????????????????????
                 var executor = new CommandsExecutor ( );
                 result = executor.Execute ( endpoint, command, parameter, this.value);
                 if ( result != null )
@@ -244,12 +250,12 @@ namespace UrbeliKuldetes
         {
             StringBuilder paramsValues = new StringBuilder ( );
 
-            paramsValues.AppendLine(receivedParams.SavedScience.ToString ( ));
+            paramsValues.AppendLine( receivedParams.SavedScience.ToString ( ));
             paramsValues.AppendLine( receivedParams.SavedSurvivors.ToString ( ));
             paramsValues.AppendLine( receivedParams.Knowledge.ToString ( ));
-            paramsValues.AppendLine(receivedParams.CrewDeaths.ToString ( ));
-            paramsValues.AppendLine(receivedParams.SurvivorDeaths.ToString ( ));
-            paramsValues.AppendLine(receivedParams.ChaarrHatred.ToString ( ));
+            paramsValues.AppendLine( receivedParams.CrewDeaths.ToString ( ));
+            paramsValues.AppendLine( receivedParams.SurvivorDeaths.ToString ( ));
+            paramsValues.AppendLine( receivedParams.ChaarrHatred.ToString ( ));
             paramsValues.AppendLine( receivedParams.PoludnicaMatter.ToString ( ));
             paramsValues.AppendLine( receivedParams.PoludnicaEnergy.ToString ( ));
             paramsValues.AppendLine( receivedParams.ExpeditionMatter.ToString ( ));

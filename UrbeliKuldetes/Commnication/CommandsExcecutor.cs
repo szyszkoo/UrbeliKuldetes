@@ -26,8 +26,8 @@ namespace UrbeliKuldetes.Commnication
             IRestResponse response = client.Execute ( request );
             if ( response.StatusCode == HttpStatusCode.OK )
             {
-                var describeClient = new DescribeExecutor ( );
-                var result = DescribeExecutor.Execute ( Login, Token );
+                //var describeClient = new DescribeExecutor ( ); ????????????????????????
+                var result = DescribeExecutor.Describe ( Login, Token );
                 return result;
             }
             else
@@ -48,8 +48,8 @@ namespace UrbeliKuldetes.Commnication
             IRestResponse response = client.Execute ( request );
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                var describeClient = new DescribeExecutor ( );
-                var result = DescribeExecutor.Execute ( Login, Token );
+                //var describeClient = new DescribeExecutor ( ); ????????????????????????????
+                var result = DescribeExecutor.Describe ( Login, Token );
                 return result;
             }
             else

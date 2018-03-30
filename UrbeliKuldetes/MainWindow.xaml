@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:UrbeliKuldetes"
         mc:Ignorable="d"
         MouseLeftButtonUp="Window_MouseLeftButtonDown"
-        Title="MainWindow" Height="800" Width="1200" ResizeMode="NoResize" Icon="./Pictures/rocket-icon.png">
+        Title="Urbeli Kuldetes - Space Mission" Height="800" Width="1200" ResizeMode="NoResize" Icon="./Pictures/rocket-icon.png">
 
     <Window.Resources>
         <Style TargetType="Button">
@@ -76,9 +76,8 @@
             <Button Content="Shuttlewrench" x:Name="ShuttlewrenchBtn" HorizontalAlignment="Left" Margin="0,350,0,0" VerticalAlignment="Top" Click="ShuttlewrenchBtn_Click"/>
             <Button Content="Back" x:Name="BackBtn1" HorizontalAlignment="Left" Background="SlateGray" Margin="0,420,0,0" VerticalAlignment="Top" Click="BackBtn_Click"/>
             <Grid Height="65" Name="SuppliesGrid" Visibility="Hidden"  Margin="0,0,10,112" VerticalAlignment="Bottom">
-                <Slider  TickFrequency="5" IsSnapToTickEnabled="True" x:Name="SuppliesSlider" ValueChanged="SuppliesSlider_ValueChanged" Height="22.667" VerticalAlignment="Top" Maximum="100" TickPlacement="BottomRight" />
+                <Slider  TickFrequency="10" IsSnapToTickEnabled="True" x:Name="SuppliesSlider" ValueChanged="SuppliesSlider_ValueChanged" Height="22.667" VerticalAlignment="Top" Maximum="1000" TickPlacement="BottomRight" />
                 <TextBlock x:Name="SuppliesValue" Text="{Binding Value, ElementName=SuppliesSlider, UpdateSourceTrigger=PropertyChanged}" Height="29" Margin="78,0,68.5,0" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
-                <Button Content="Back" x:Name="BackBtn5" HorizontalAlignment="Left" Background="SlateGray" Margin="0,420,0,0" VerticalAlignment="Top" Click="BackBtn_Click"/>
             </Grid>
         </Grid>
 
@@ -101,12 +100,12 @@
             <Grid Margin="15,10,416,603">
                 <Rectangle HorizontalAlignment="Left" Stroke="White" VerticalAlignment="Top" />
                 <Label Content="TURN" HorizontalAlignment="Left"  Margin="25,0,0,0" VerticalAlignment="Top"/>
-                <TextBlock x:Name="Turn" HorizontalAlignment="Left" Height="67" Margin="6,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="96"/>
+                <TextBlock x:Name="Turn" HorizontalAlignment="Left" Height="38.333" Margin="0,47.083,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="98.667" RenderTransformOrigin="0.503,0.424"/>
             </Grid>
             <Grid Margin="170,10,173,581">
                 <Rectangle HorizontalAlignment="Left" Stroke="White" VerticalAlignment="Top" Margin="-50,0,0,0" />
                 <Label Content="LOCATION" HorizontalAlignment="Left"  Margin="-50,0,0,0" VerticalAlignment="Top" Width="100"/>
-                <TextBlock x:Name="Location" HorizontalAlignment="Left" Height="67" Margin="-50,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+                <TextBlock x:Name="Location" HorizontalAlignment="Left" Height="43" Margin="-50,45.084,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
             </Grid>
             <Grid Margin="224,10,218,607">
                 <Rectangle HorizontalAlignment="Left" Stroke="White" VerticalAlignment="Top" />
@@ -121,7 +120,7 @@
             <Label Content="LAST TURN EVENTS" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="237,117,0,0"/>
             <Label Content="EQUIPMENT" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="380,10,0,0"/>
             <TextBlock x:Name="LastTurnEv" HorizontalAlignment="Left" Height="178" Margin="237,150,0,0" TextWrapping="Wrap" FontSize="13" TextAlignment="Left" VerticalAlignment="Top" Width="289"/>
-            <TextBlock x:Name="Equipment" HorizontalAlignment="Left" Height="59" Margin="330,43,0,0" TextWrapping="Wrap" FontSize="13" TextAlignment="Left" VerticalAlignment="Top" Width="208"/>
+            <TextBlock x:Name="Equipment" HorizontalAlignment="Left" Height="73" Margin="330,37,0,0" TextWrapping="Wrap" FontSize="13" TextAlignment="Left" VerticalAlignment="Top" Width="208"/>
 
             <Rectangle HorizontalAlignment="Left" Height="359" Margin="308,362,0,0" Stroke="White" VerticalAlignment="Top" Width="228"/>
             <Grid Margin="320,362,12,26">
