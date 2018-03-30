@@ -39,13 +39,13 @@ namespace UrbeliKuldetes.CreatingPayload
         //    Value = value;
         //}
         //payload with a parameter and enum  value (Order Command)
-        public PayloadCreator ( Commands command, Parameters parameter, Parameters value, string login, string token )
+        public PayloadCreator ( Commands command, Parameters parameter, string value, string login, string token )
         {
             Command = command.ToString ( );
             Login = login;
             Token = token;
             Parameter = parameter.ToString ( );
-            Value = value.ToString();
+            Value = value;
         }
         public string ToJson()
         {

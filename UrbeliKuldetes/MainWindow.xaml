@@ -75,6 +75,11 @@
             <Button Content="Energy" x:Name="EnergyBtn" HorizontalAlignment="Left" Margin="0,280,0,0" VerticalAlignment="Top" Click="EnergyBtn_Click"/>
             <Button Content="Shuttlewrench" x:Name="ShuttlewrenchBtn" HorizontalAlignment="Left" Margin="0,350,0,0" VerticalAlignment="Top" Click="ShuttlewrenchBtn_Click"/>
             <Button Content="Back" x:Name="BackBtn1" HorizontalAlignment="Left" Background="SlateGray" Margin="0,420,0,0" VerticalAlignment="Top" Click="BackBtn_Click"/>
+            <Grid Height="65" Name="SuppliesGrid" Visibility="Hidden"  Margin="0,0,10,112" VerticalAlignment="Bottom">
+                <Slider  TickFrequency="5" IsSnapToTickEnabled="True" x:Name="SuppliesSlider" ValueChanged="SuppliesSlider_ValueChanged" Height="22.667" VerticalAlignment="Top" Maximum="100" TickPlacement="BottomRight" />
+                <TextBlock x:Name="SuppliesValue" Text="{Binding Value, ElementName=SuppliesSlider, UpdateSourceTrigger=PropertyChanged}" Height="29" Margin="78,0,68.5,0" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
+                <Button Content="Back" x:Name="BackBtn5" HorizontalAlignment="Left" Background="SlateGray" Margin="0,420,0,0" VerticalAlignment="Top" Click="BackBtn_Click"/>
+            </Grid>
         </Grid>
 
 
@@ -91,7 +96,7 @@
         </Grid>
 
         <Grid Name ="Results" Grid.Column="2" Margin="10,10,59,30" HorizontalAlignment="Center" Width="548">
-            <Rectangle HorizontalAlignment="Left" Height="235" Margin="15,117,0,0" Stroke="White" VerticalAlignment="Top" Width="207"/>
+            <Rectangle HorizontalAlignment="Left" Height="235" Margin="15,117,0,0" Stroke="White" VerticalAlignment="Top" Width="204"/>
 
             <Grid Margin="15,10,416,603">
                 <Rectangle HorizontalAlignment="Left" Stroke="White" VerticalAlignment="Top" />
@@ -111,14 +116,14 @@
 
                 <TextBlock x:Name="IsItOver" HorizontalAlignment="Left" Height="38" Margin="18,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="64"/>
             </Grid>
-            <Rectangle HorizontalAlignment="Left"  Margin="227,117,0,0" Stroke="White" VerticalAlignment="Top" Width="309" Height="235"/>
+            <Rectangle HorizontalAlignment="Left"  Margin="224,117,0,0" Stroke="White" VerticalAlignment="Top" Width="312" Height="235"/>
             <Rectangle HorizontalAlignment="Left"  Margin="328,10,0,0" Stroke="White" VerticalAlignment="Top" Width="208" Height="100"/>
             <Label Content="LAST TURN EVENTS" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="237,117,0,0"/>
             <Label Content="EQUIPMENT" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="380,10,0,0"/>
             <TextBlock x:Name="LastTurnEv" HorizontalAlignment="Left" Height="178" Margin="237,150,0,0" TextWrapping="Wrap" FontSize="13" TextAlignment="Left" VerticalAlignment="Top" Width="289"/>
             <TextBlock x:Name="Equipment" HorizontalAlignment="Left" Height="59" Margin="330,43,0,0" TextWrapping="Wrap" FontSize="13" TextAlignment="Left" VerticalAlignment="Top" Width="208"/>
 
-            <Rectangle HorizontalAlignment="Left" Height="357" Margin="308,362,0,0" Stroke="White" VerticalAlignment="Top" Width="228"/>
+            <Rectangle HorizontalAlignment="Left" Height="359" Margin="308,362,0,0" Stroke="White" VerticalAlignment="Top" Width="228"/>
             <Grid Margin="320,362,12,26">
                 <Label Content="PARAMETERS" HorizontalAlignment="Left" Height="38" VerticalAlignment="Top" Width="212"/>
                 <TextBlock x:Name="ParamsNames" LineStackingStrategy="BlockLineHeight" LineHeight="30" FontSize="16" HorizontalAlignment="Left" Margin="0,27,0,10" TextWrapping="Wrap" Width="153"/>
@@ -130,14 +135,15 @@
             <TextBlock x:Name="ScoresValues" LineStackingStrategy="BlockLineHeight" LineHeight="30" FontSize="15" HorizontalAlignment="Left" Height="178" Margin="170,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40"/>
 
         </Grid>
-        <Grid Name ="Logss" Margin="14,365,307,30" HorizontalAlignment="Center" Width="296" Grid.Column="2">
+        <Grid Name ="Logss" Margin="14,365,299,20" HorizontalAlignment="Center" Width="304" Grid.Column="2">
 
-            <Rectangle HorizontalAlignment="Left"  Margin="10,10,0,0" Stroke="White" VerticalAlignment="Top" Width="275" Height="351"/>
-            <ScrollViewer HorizontalAlignment="Left" Height="343" Margin="10,10,0,0"  VerticalAlignment="Top" Width="272">
-                <TextBlock x:Name="Logs" FontSize="10" TextWrapping="Wrap"  Height="1149" Width="239"/>
+            <Rectangle HorizontalAlignment="Left"  Margin="11,7,0,0" Stroke="White" VerticalAlignment="Top" Width="285" Height="360"/>
+            <ScrollViewer HorizontalAlignment="Left" Height="350" Margin="10,10,0,0"  VerticalAlignment="Top" Width="276">
+                <TextBlock x:Name="Logs" FontSize="10" TextWrapping="Wrap"  Height="1139" Width="239"/>
 
             </ScrollViewer>
         </Grid>
+
 
     </Grid>
 

@@ -11,7 +11,7 @@ using UrbeliKuldetes.Models;
 
 namespace UrbeliKuldetes.Commnication
 {
-    class DescribeExcecutor
+    class DescribeExecutor
     {
         public static Result Execute(string login, string token)
         {
@@ -19,9 +19,16 @@ namespace UrbeliKuldetes.Commnication
             var describeClient = new RestClient (endpoint);
             var describeRequest = RequestCreator.CreateGETRequest();
             IRestResponse describeResponse = describeClient.Execute ( describeRequest );
-            //if ( describeResponse.StatusCode == HttpStatusCode.OK )
+            if ( describeResponse.StatusCode == HttpStatusCode.OK )
+            {
+                   return JsonConvert.DeserializeObject<Result> ( describeResponse.Content ); 
 
-            return JsonConvert.DeserializeObject<Result> ( describeResponse.Content ); 
+            }
+            else
+            {
+                return null;
+            }
+
         }
     }
 }

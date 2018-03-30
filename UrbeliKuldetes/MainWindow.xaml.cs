@@ -32,6 +32,7 @@ namespace UrbeliKuldetes
         private Parameters parameter;
         private Result result;
         private Params resultParams = new Params ( );
+        private string value = null;
 
 
         public MainWindow ( )
@@ -40,6 +41,11 @@ namespace UrbeliKuldetes
             endpoint = $"https://simulation.future-processing.pl/execute";
             this.Title = "Space Mission";
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+        }
+        private void Window_MouseLeftButtonDown ( object sender, MouseButtonEventArgs e )
+        {
+            CurrentRequest.Text = command.ToString ( ) + "\n" + parameter.ToString ( )+"\t"+value;
+
         }
         #region Commands buttons
         private void ScanBtn_Click ( object sender, RoutedEventArgs e )
@@ -113,7 +119,7 @@ namespace UrbeliKuldetes
         }
         #endregion
 
-        #region Parameters for produce
+        #region Parameters for Produce
         private void DecoyBtn_Click ( object sender, RoutedEventArgs e )
         {
             parameter = Parameters.Decoy;
@@ -127,6 +133,7 @@ namespace UrbeliKuldetes
         private void SuppliesBtn_Click ( object sender, RoutedEventArgs e )
         {
             parameter = Parameters.Supplies;
+            SuppliesGrid.Visibility = Visibility.Visible;
         }
 
         private void ToolsBtn_Click ( object sender, RoutedEventArgs e )
@@ -151,22 +158,32 @@ namespace UrbeliKuldetes
             ParametersBox.Visibility = Visibility.Hidden;
             ParametersBoxProduce.Visibility = Visibility.Hidden;
             ParametersBoxRepair.Visibility = Visibility.Hidden;
+            this.value = null;
             
+        }
+        private void RestartBtn_Click ( object sender, RoutedEventArgs e )
+        {
+            MessageBox.Show ( "Your simulation will be restared now " );
+            var restarter = new CommandsExecutor ( );
+            result = restarter.RestartSimulation ( endpoint );
+            if ( result != null )
+            {
+                CleanInfo ( );
+                UpdateInfo ( result );
+            }
         }
 
         private void SendRequestBtn_Click ( object sender, RoutedEventArgs e )
         {
-            if(!parameter.ToString().Equals("") && !command.ToString().Equals(""))
-            {
                 // TODO: a co jesli null ????????????????????????????????????
-                var executor = new CommandsExcecutor ( );
-                result = executor.Execute ( endpoint, command, parameter);
-                UpdateInfo ( result );
-            }
-            else
-            {
-                MessageBox.Show ( "Choose your command and parameter first" );
-            }
+                var executor = new CommandsExecutor ( );
+                result = executor.Execute ( endpoint, command, parameter, this.value);
+                if ( result != null )
+                {
+                    CleanInfo ( );
+                    UpdateInfo ( result );
+                }
+       
         }
         #endregion
 
@@ -187,20 +204,7 @@ namespace UrbeliKuldetes
         }
         #endregion
 
-        private void RestartBtn_Click ( object sender, RoutedEventArgs e )
-        {
-            MessageBox.Show ( "Your simulation will be restared now " );
-            var restarter = new CommandsExcecutor ( );
-            restarter.RestartSimulation ( endpoint);
-            CleanInfo ( );
-            
-        }
-
-        private void Window_MouseLeftButtonDown ( object sender, MouseButtonEventArgs e )
-        {
-            CurrentRequest.Text = command.ToString ( ) + "\n" + parameter.ToString ( );
-
-        }
+        #region Updating and cleaning info
         private void UpdateInfo(Result result)
         {
             Turn.Text = result.Turn.ToString ( );
@@ -228,6 +232,11 @@ namespace UrbeliKuldetes
             LastTurnEv.Text = "";
             Equipment.Text = "";
             Logs.Text = "";
+            ParamsValue.Text = "";
+            ScoresValues.Text = "";
+            Turn.Text = "";
+            Location.Text = "";
+            IsItOver.Text = "";
         }
 
 
@@ -263,5 +272,11 @@ namespace UrbeliKuldetes
 
             ScoresValues.Text = scoresValues.ToString ( );
         }
+        private void SuppliesSlider_ValueChanged ( object sender, RoutedPropertyChangedEventArgs<double> e )
+        {
+            SuppliesValue.Text = SuppliesSlider.Value.ToString();
+            this.value = SuppliesSlider.Value.ToString ( );
+        }
+        #endregion
     }
 }
