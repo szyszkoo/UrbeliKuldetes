@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UrbeliKuldetes.Models.ResponseModel
 {
-    public struct Scores
+    public class Scores
     {
         public decimal SurvivorsScore { get; set; }
         public decimal ScienceScore { get; set; }

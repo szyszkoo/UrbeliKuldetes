@@ -17,7 +17,7 @@ namespace UrbeliKuldetes.Models
         public IList<string> LastTurnEvents { get; set; }
         public IList<string> Equipments { get; set; }
         public IList<string> LogBook { get; set; }
-        public Scores AllScores { get; set; }
+        public Scores Scores { get; set; }
         public bool IsTerminated { get; set; }
     }
 }

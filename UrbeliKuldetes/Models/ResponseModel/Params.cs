@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -15,7 +16,9 @@ namespace UrbeliKuldetes.Models.ResponseModel
         public decimal CrewDeaths { get; set; }
         public decimal SurvivorDeaths { get; set; }
         public decimal ChaarrHatred { get; set; }
+        [JsonProperty ( "PołudnicaMatter" )]
         public decimal PoludnicaMatter { get; set; }
+        [JsonProperty ( "PołudnicaEnergy" )]
         public decimal PoludnicaEnergy { get; set; }
         public decimal ExpeditionMatter { get; set; }
         public decimal ExpeditionEnergy { get; set; }

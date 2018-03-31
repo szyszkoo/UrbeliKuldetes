@@ -35,6 +35,7 @@ namespace UrbeliKuldetes
         private Parameters parameter;
         private Result result;
         private Params resultParams = new Params ( );
+        private Scores resultScores = new Scores ( );
         private string value = null;
 
 
@@ -175,7 +176,6 @@ namespace UrbeliKuldetes
             result = restarter.RestartSimulation ( endpoint );
             if ( result != null )
             {
-                CleanInfo ( );
                 UpdateInfo ( result );
             }
         }
@@ -186,7 +186,6 @@ namespace UrbeliKuldetes
                 result = executor.Execute ( endpoint, command, parameter, this.value);
                 if ( result != null )
                 {
-                    CleanInfo ( );
                     UpdateInfo ( result );
                 }
        
@@ -213,6 +212,7 @@ namespace UrbeliKuldetes
         #region Updating and cleaning info
         private void UpdateInfo(Result result)
         {
+            CleanInfo ( );
             Turn.Text = result.Turn.ToString ( );
             Location.Text = result.Location;
             IsItOver.Text = result.IsTerminated.ToString ( );
@@ -226,12 +226,12 @@ namespace UrbeliKuldetes
             }
             foreach(var log in result.LogBook)
             {
-                Logs.Text = Logs.Text + log + "\n";
+                Logs.Text = Logs.Text + log + "\n\n";
             }
             ParamsNames.Text = result.Parameters.GetParamsNames ( );
             UpdateParamsValues ( result.Parameters );
-            ScoresNames.Text = result.AllScores.GetScoresNames ( );
-            UpdateScoresValues ( result.AllScores );
+            ScoresNames.Text = result.Scores.GetScoresNames ( );
+            UpdateScoresValues ( result.Scores );
         }
         private void CleanInfo ( )
         {
@@ -249,17 +249,17 @@ namespace UrbeliKuldetes
         private void UpdateParamsValues(Params receivedParams)
         {
             StringBuilder paramsValues = new StringBuilder ( );
-
-            paramsValues.AppendLine( receivedParams.SavedScience.ToString ( ));
-            paramsValues.AppendLine( receivedParams.SavedSurvivors.ToString ( ));
-            paramsValues.AppendLine( receivedParams.Knowledge.ToString ( ));
-            paramsValues.AppendLine( receivedParams.CrewDeaths.ToString ( ));
-            paramsValues.AppendLine( receivedParams.SurvivorDeaths.ToString ( ));
-            paramsValues.AppendLine( receivedParams.ChaarrHatred.ToString ( ));
-            paramsValues.AppendLine( receivedParams.PoludnicaMatter.ToString ( ));
-            paramsValues.AppendLine( receivedParams.PoludnicaEnergy.ToString ( ));
-            paramsValues.AppendLine( receivedParams.ExpeditionMatter.ToString ( ));
-            paramsValues.AppendLine( receivedParams.ExpeditionEnergy.ToString ( ));
+            //"0.##" -> displays a number without decimal places
+            paramsValues.AppendLine( receivedParams.SavedScience.ToString ( "0.##" ) );
+            paramsValues.AppendLine( receivedParams.SavedSurvivors.ToString ( "0.##" ) );
+            paramsValues.AppendLine( receivedParams.Knowledge.ToString ( "0.##" ) );
+            paramsValues.AppendLine( receivedParams.CrewDeaths.ToString ( "0.##" ) );
+            paramsValues.AppendLine( receivedParams.SurvivorDeaths.ToString ( "0.##" ) );
+            paramsValues.AppendLine( receivedParams.ChaarrHatred.ToString ( "0.##" ) );
+            paramsValues.AppendLine( receivedParams.PoludnicaMatter.ToString ( "0.##" ) );
+            paramsValues.AppendLine( receivedParams.PoludnicaEnergy.ToString ( "0.##" ) );
+            paramsValues.AppendLine( receivedParams.ExpeditionMatter.ToString ( "0.##" ) );
+            paramsValues.AppendLine( receivedParams.ExpeditionEnergy.ToString ( "0.##" ) );
 
 
             ParamsValue.Text = paramsValues.ToString();
@@ -267,13 +267,13 @@ namespace UrbeliKuldetes
         private void UpdateScoresValues(Scores receivedScores)
         {
             StringBuilder scoresValues = new StringBuilder ( );
-
-            scoresValues.AppendLine ( receivedScores.SurvivorsScore.ToString ( ) );
-            scoresValues.AppendLine ( receivedScores.ScienceScore.ToString ( ) );
-            scoresValues.AppendLine ( receivedScores.CrewMalus.ToString ( ) );
-            scoresValues.AppendLine ( receivedScores.KnowledgeScore.ToString ( ) );
-            scoresValues.AppendLine ( receivedScores.EventScore.ToString ( ) );
-            scoresValues.AppendLine ( receivedScores.TotalScore.ToString ( ) );
+            //"0.##" -> displays a number without decimal places
+            scoresValues.AppendLine ( receivedScores.SurvivorsScore.ToString ( "0.##" ) );
+            scoresValues.AppendLine ( receivedScores.ScienceScore.ToString ( "0.##" ) );
+            scoresValues.AppendLine ( receivedScores.CrewMalus.ToString ( "0.##" ) );
+            scoresValues.AppendLine ( receivedScores.KnowledgeScore.ToString ( "0.##" ) );
+            scoresValues.AppendLine ( receivedScores.EventScore.ToString ( "0.##" ) );
+            scoresValues.AppendLine ( receivedScores.TotalScore.ToString ( "0.##" ) );
 
 
             ScoresValues.Text = scoresValues.ToString ( );
