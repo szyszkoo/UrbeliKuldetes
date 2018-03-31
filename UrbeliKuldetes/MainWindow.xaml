@@ -119,31 +119,31 @@
             <Rectangle HorizontalAlignment="Left"  Margin="328,10,0,0" Stroke="White" VerticalAlignment="Top" Width="208" Height="100"/>
             <Label Content="LAST TURN EVENTS" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="237,117,0,0"/>
             <Label Content="EQUIPMENT" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="375,10,0,0"/>
-            <ScrollViewer HorizontalAlignment="Left" Height="178" Margin="237,150,0,0" VerticalAlignment="Top" Width="289">
+            <ScrollViewer HorizontalAlignment="Left" Height="195" Margin="242,150,0,0" VerticalAlignment="Top" Width="284">
                 <TextBlock x:Name="LastTurnEv" TextWrapping="Wrap" FontSize="13" TextAlignment="Left" Height="570" Width="289"/>
             </ScrollViewer>
-            <ScrollViewer HorizontalAlignment="Left" Height="73" Margin="330,37,0,0" VerticalAlignment="Top" Width="196">
+            <ScrollViewer HorizontalAlignment="Left" Height="68" Margin="330,37,0,0" VerticalAlignment="Top" Width="196">
                 <TextBlock x:Name="Equipment" TextWrapping="Wrap" FontSize="13" TextAlignment="Left" Height="205" Width="208"/>
 
             </ScrollViewer>
 
             <Rectangle HorizontalAlignment="Left" Height="359" Margin="308,362,0,0" Stroke="White" VerticalAlignment="Top" Width="228"/>
             <Grid Margin="320,362,12,26">
-                <Label Content="PARAMETERS" HorizontalAlignment="Left" Height="38" VerticalAlignment="Top" Width="212" Margin="-6,0,0,0"/>
+                <Label Content="PARAMETERS" HorizontalAlignment="Left" Height="38" VerticalAlignment="Top" Width="123" Margin="34,0,0,0"/>
                 <TextBlock x:Name="ParamsNames" LineStackingStrategy="BlockLineHeight" LineHeight="30" FontSize="16" HorizontalAlignment="Left" Margin="0,27,0,10" TextWrapping="Wrap" Width="153"/>
                 <TextBlock x:Name="ParamsValue" LineStackingStrategy="BlockLineHeight" LineHeight="30" FontSize="15" HorizontalAlignment="Left" Height="306" Margin="158,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="48"/>
 
             </Grid>
-            <Label Content="SCORES" HorizontalAlignment="Left" Height="42" Margin="28,117,0,0" VerticalAlignment="Top" Width="161"/>
+            <Label Content="SCORES" HorizontalAlignment="Left" Height="42" Margin="74,117,0,0" VerticalAlignment="Top" Width="84"/>
             <TextBlock x:Name="ScoresNames" HorizontalAlignment="Left" LineStackingStrategy="BlockLineHeight" LineHeight="30" FontSize="16" Margin="23,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="178" Width="142"/>
             <TextBlock x:Name="ScoresValues" LineStackingStrategy="BlockLineHeight" LineHeight="30" FontSize="15" HorizontalAlignment="Left" Height="178" Margin="170,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="49"/>
 
         </Grid>
         <Grid Name ="Logss" Margin="14,365,299,20" HorizontalAlignment="Center" Width="304" Grid.Column="2">
-
+            <Label Content="LOGBOOK" HorizontalAlignment="Left" Height="42" Margin="74,5,0,0" VerticalAlignment="Top" Width="93"/>
             <Rectangle HorizontalAlignment="Left"  Margin="11,7,0,0" Stroke="White" VerticalAlignment="Top" Width="285" Height="360"/>
-            <ScrollViewer HorizontalAlignment="Left" Height="350" Margin="10,10,0,0"  VerticalAlignment="Top" Width="276">
-                <TextBlock x:Name="Logs" FontSize="10" TextWrapping="Wrap"  Height="1139" Width="239"/>
+            <ScrollViewer HorizontalAlignment="Left" Height="325" Margin="10,35,0,0"  VerticalAlignment="Top" Width="276">
+                <TextBlock x:Name="Logs" FontSize="10" TextWrapping="Wrap"  Height="1083" Width="239"/>
 
             </ScrollViewer>
         </Grid>

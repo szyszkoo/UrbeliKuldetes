@@ -49,7 +49,6 @@ namespace UrbeliKuldetes
 
         private void Window_MouseLeftButtonDown ( object sender, MouseButtonEventArgs e )
         {
-            // TODO: naprawić wyswietlanie poludnica energy i poludnica matter , naprawić scores
             CurrentRequest.Text = command.ToString ( ) + "\n" + parameter.ToString ( )+"\t"+value;
             result = DescribeExecutor.Describe ( Login, Token );
             UpdateInfo ( result );
