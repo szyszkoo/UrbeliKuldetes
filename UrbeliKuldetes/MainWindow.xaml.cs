@@ -46,19 +46,17 @@ namespace UrbeliKuldetes
             this.Title = "Space Mission";
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
-
         private void Window_MouseLeftButtonDown ( object sender, MouseButtonEventArgs e )
         {
-            CurrentRequest.Text = command.ToString ( ) + "\n" + parameter.ToString ( )+"\t"+value;
+            CurrentRequest.Text = command.ToString ( ) + "\n" + parameter.ToString ( )+"\n"+value;
             result = DescribeExecutor.Describe ( Login, Token );
             UpdateInfo ( result );
         }
         #region Commands buttons
         private void ScanBtn_Click ( object sender, RoutedEventArgs e )
         {
-            ParametersBox.Visibility = Visibility.Visible;
-            command = Commands.Scan;
-
+            SetVisibility ( ParametersBox, Visibility.Visible );
+            SetCommand ( Commands.Scan );
         }
 
         // TODO : delete this method without errors
@@ -69,31 +67,32 @@ namespace UrbeliKuldetes
 
         private void MoveToBtn_Click ( object sender, RoutedEventArgs e )
         {
-            ParametersBox.Visibility = Visibility.Visible;
-            command = Commands.MoveTo;
+            SetVisibility ( ParametersBox, Visibility.Visible );
+            SetCommand ( Commands.MoveTo );
         }
 
         private void ProduceBtn_Click ( object sender, RoutedEventArgs e )
         {
-            ParametersBoxProduce.Visibility = Visibility.Visible;
-            command = Commands.Produce;
+            SetVisibility ( ParametersBoxProduce, Visibility.Visible );
+            SetCommand ( Commands.Produce );
         }
 
         private void HarvestBtn_Click ( object sender, RoutedEventArgs e )
         {
-            ParametersBox.Visibility = Visibility.Visible;
-            command = Commands.Harvest;
+            SetVisibility ( ParametersBox, Visibility.Visible );
+            SetCommand ( Commands.Harvest );
         }
 
         private void RepairBtn_Click ( object sender, RoutedEventArgs e )
         {
-            ParametersBoxRepair.Visibility = Visibility.Visible;
-            command = Commands.Repair;
+            SetVisibility ( ParametersBoxRepair , Visibility.Visible );
+            SetCommand ( Commands.Repair );
         }
 
         private void OrderBtn_Click ( object sender, RoutedEventArgs e )
         {
-            command = Commands.Order;
+            SetCommand ( Commands.Order );
+            SetVisibility ( ParametersBoxOrder, Visibility.Visible );
         }
 
         #endregion
@@ -101,70 +100,91 @@ namespace UrbeliKuldetes
         #region Parameters for Scan, MoveTo, Harvest
         private void ChaarrBtn_Click ( object sender, RoutedEventArgs e )
         {
-            parameter = Parameters.Chaarr;
+            SetParameter ( Parameters.Chaarr );
         }
 
         private void EsthBtn_Click ( object sender, RoutedEventArgs e )
         {
-            parameter = Parameters.Esth;
+            SetParameter ( Parameters.Esth );
         }
 
         private void ShuttleBtn_Click ( object sender, RoutedEventArgs e )
         {
-            parameter = Parameters.Shuttle;
+            SetParameter ( Parameters.Shuttle );
         }
 
         private void AsteroidsBtn_Click ( object sender, RoutedEventArgs e )
         {
-            parameter = Parameters.Asteroids;
+            SetParameter ( Parameters.Asteroids );
         }
 
         private void PoludnicaBtn_Click ( object sender, RoutedEventArgs e )
         {
-            parameter = Parameters.Południca;
+            SetParameter ( Parameters.Południca );
         }
         #endregion
 
         #region Parameters for Produce
         private void DecoyBtn_Click ( object sender, RoutedEventArgs e )
         {
-            parameter = Parameters.Decoy;
+            SetParameter ( Parameters.Decoy );
         }
 
         private void WeaponsBtn_Click ( object sender, RoutedEventArgs e )
         {
-            parameter = Parameters.Weapons;
+            SetParameter ( Parameters.Weapons );
         }
 
         private void SuppliesBtn_Click ( object sender, RoutedEventArgs e )
         {
-            parameter = Parameters.Supplies;
-            SuppliesGrid.Visibility = Visibility.Visible;
+            SetParameter ( Parameters.Supplies );
+            SetVisibility ( SuppliesGrid, Visibility.Visible );
         }
 
         private void ToolsBtn_Click ( object sender, RoutedEventArgs e )
         {
-            parameter = Parameters.Tools;
+            SetParameter ( Parameters.Tools );
         }
 
         private void EnergyBtn_Click ( object sender, RoutedEventArgs e )
         {
-            parameter = Parameters.Energy;
+            SetParameter ( Parameters.Energy );
         }
 
         private void ShuttlewrenchBtn_Click ( object sender, RoutedEventArgs e )
         {
-            parameter = Parameters.Shuttlewrench;
+            SetParameter ( Parameters.Shuttlewrench );
+        }
+        #endregion
+
+        #region Parameters for Repair
+        private void CommunicationsBtn_Click ( object sender, RoutedEventArgs e )
+        {
+            SetParameter ( Parameters.Communications );
+        }
+
+        private void ShuttleRBtn_Click ( object sender, RoutedEventArgs e )
+        {
+            //should be deleted
+        }
+
+        private void PartialShuttleBtn_Click ( object sender, RoutedEventArgs e )
+        {
+            SetParameter ( Parameters.Partialshuttle );
         }
         #endregion
 
         #region Communication buttons
         private void BackBtn_Click ( object sender, RoutedEventArgs e )
         {
-            ParametersBox.Visibility = Visibility.Hidden;
-            ParametersBoxProduce.Visibility = Visibility.Hidden;
-            ParametersBoxRepair.Visibility = Visibility.Hidden;
-            SuppliesSlider.Visibility = Visibility.Hidden;
+            SetVisibility ( ParametersBox, Visibility.Hidden );
+            SetVisibility ( ParametersBoxProduce, Visibility.Hidden );
+            SetVisibility ( ParametersBoxRepair, Visibility.Hidden );
+            SetVisibility ( ParametersBoxOrder, Visibility.Hidden );
+            SetVisibility ( ValuesBoxOrder, Visibility.Hidden );
+            SetVisibility ( SuppliesGrid, Visibility.Hidden );
+
+            //SuppliesSlider.Visibility = Visibility.Hidden;
             this.value = null;
             
         }
@@ -188,23 +208,6 @@ namespace UrbeliKuldetes
                     UpdateInfo ( result );
                 }
        
-        }
-        #endregion
-
-        #region Parameters for Repair
-        private void CommunicationsBtn_Click ( object sender, RoutedEventArgs e )
-        {
-            parameter = Parameters.Communications;
-        }
-
-        private void ShuttleRBtn_Click ( object sender, RoutedEventArgs e )
-        {
-            //should be deleted
-        }
-
-        private void PartialShuttleBtn_Click ( object sender, RoutedEventArgs e )
-        {
-            parameter = Parameters.Partialshuttle;
         }
         #endregion
 
@@ -281,6 +284,84 @@ namespace UrbeliKuldetes
         {
             SuppliesValue.Text = SuppliesSlider.Value.ToString();
             this.value = SuppliesSlider.Value.ToString ( );
+        }
+        private void SetParameter(Parameters paramForRequest)
+        {
+            parameter = paramForRequest;
+        }
+        private void SetCommand(Commands commandForRequest)
+        {
+            command = commandForRequest;
+        }
+        private void SetVisibility(Grid gridName, Visibility visibilityMode)
+        {
+            gridName.Visibility = visibilityMode;
+        }
+        private void SetValueForOrderCommand(Parameters valueForOrderCommand)
+        {
+            this.value = valueForOrderCommand.ToString ( );
+        }
+        #endregion
+        #region Parameters for Order
+        private void HelpBtn_Click ( object sender, RoutedEventArgs e )
+        {
+            SetParameter ( Parameters.Help );
+            SetVisibility ( ParametersBoxOrder, Visibility.Hidden );
+            SetVisibility ( ValuesBoxOrder, Visibility.Visible );
+        }
+
+        private void FinalWarBtn_Click ( object sender, RoutedEventArgs e )
+        {
+            SetParameter ( Parameters.FinalWar );
+            SetVisibility ( ParametersBoxOrder, Visibility.Hidden );
+            SetVisibility ( ValuesBoxOrder, Visibility.Visible );
+        }
+
+        private void EvacScience_Click ( object sender, RoutedEventArgs e )
+        {
+            SetParameter ( Parameters.EvacScience );
+            SetVisibility ( ParametersBoxOrder, Visibility.Hidden );
+            SetVisibility ( ValuesBoxOrder, Visibility.Visible );
+        }
+
+        private void EvacSurvivors_Click ( object sender, RoutedEventArgs e )
+        {
+            SetParameter ( Parameters.EvacSurvivors );
+            SetVisibility ( ParametersBoxOrder, Visibility.Hidden );
+            SetVisibility ( ValuesBoxOrder, Visibility.Visible );
+        }
+
+        private void Retreat_Click ( object sender, RoutedEventArgs e )
+        {
+            SetParameter ( Parameters.Retreat );
+            SetVisibility ( ParametersBoxOrder, Visibility.Hidden );
+            SetVisibility ( ValuesBoxOrder, Visibility.Visible );
+        }
+        #endregion
+        #region Values for Order
+        private void VChaarrBtn_Click ( object sender, RoutedEventArgs e )
+        {
+            SetValueForOrderCommand ( Parameters.Chaarr );
+        }
+
+        private void VEsthBtn_Click ( object sender, RoutedEventArgs e )
+        {
+            SetValueForOrderCommand ( Parameters.Esth );
+        }
+
+        private void VShuttleBtn_Click ( object sender, RoutedEventArgs e )
+        {
+            SetValueForOrderCommand ( Parameters.Shuttle );
+        }
+
+        private void VAsteroidsBtn_Click ( object sender, RoutedEventArgs e )
+        {
+            SetValueForOrderCommand ( Parameters.Asteroids );
+        }
+
+        private void VPoludnicaBtn_Click ( object sender, RoutedEventArgs e )
+        {
+            SetValueForOrderCommand ( Parameters.Południca );
         }
         #endregion
     }

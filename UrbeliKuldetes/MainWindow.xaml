@@ -50,8 +50,8 @@
         <Button Content="Repair" Name="RepairBtn" HorizontalAlignment="Left" Margin="64,310,0,0" VerticalAlignment="Top" Click="RepairBtn_Click"/>
         <Button Content="Order" Name="OrderBtn" HorizontalAlignment="Left" Margin="64,380,0,0" VerticalAlignment="Top" Click="OrderBtn_Click"/>
         <Button Content="Restart" Name="RestartBtn" HorizontalAlignment="Left" Margin="64,450,0,0" VerticalAlignment="Top" Click="RestartBtn_Click"/>
-        <Label Content="Your request:" HorizontalAlignment="Left" Height="33" Margin="64,562,0,0" VerticalAlignment="Top" Width="230"/>
-        <TextBlock Name="CurrentRequest" HorizontalAlignment="Left" Height="76" Margin="64,600,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230"/>
+        <Label Content="Your request:" HorizontalAlignment="Left" Height="33" Margin="64,537,0,0" VerticalAlignment="Top" Width="230"/>
+        <TextBlock Name="CurrentRequest" HorizontalAlignment="Left" Height="101" Margin="64,575,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230"/>
         <Button Content="Send request" Name="SendRequestBtn" HorizontalAlignment="Left" Margin="64,681,0,0" VerticalAlignment="Top" Click="SendRequestBtn_Click" Background="SlateGray"/>
 
         <Grid Name ="ParametersBox" Visibility="Hidden" Grid.Column="1" Margin="31,30,7,30" HorizontalAlignment="Center" Width="230" >
@@ -75,7 +75,7 @@
             <Button Content="Energy" x:Name="EnergyBtn" HorizontalAlignment="Left" Margin="0,280,0,0" VerticalAlignment="Top" Click="EnergyBtn_Click"/>
             <Button Content="Shuttlewrench" x:Name="ShuttlewrenchBtn" HorizontalAlignment="Left" Margin="0,350,0,0" VerticalAlignment="Top" Click="ShuttlewrenchBtn_Click"/>
             <Button Content="Back" x:Name="BackBtn1" HorizontalAlignment="Left" Background="SlateGray" Margin="0,420,0,0" VerticalAlignment="Top" Click="BackBtn_Click"/>
-            <Grid Height="65" Name="SuppliesGrid" Visibility="Hidden"  Margin="0,0,10,112" VerticalAlignment="Bottom">
+            <Grid Height="65" Name="SuppliesGrid" Visibility="Hidden" Margin="0,0,10,112" VerticalAlignment="Bottom">
                 <Slider  TickFrequency="10" IsSnapToTickEnabled="True" x:Name="SuppliesSlider" ValueChanged="SuppliesSlider_ValueChanged" Height="22.667" VerticalAlignment="Top" Maximum="1000" TickPlacement="BottomRight" />
                 <TextBlock x:Name="SuppliesValue" Text="{Binding Value, ElementName=SuppliesSlider, UpdateSourceTrigger=PropertyChanged}" Height="29" Margin="78,0,68.5,0" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
             </Grid>
@@ -93,6 +93,27 @@
             <Button Content="Esthajnalcsillag" x:Name="EsthRBtn" HorizontalAlignment="Left" Margin="0,350,0,0" VerticalAlignment="Top" Click="EsthBtn_Click"/>
             <Button Content="Back" x:Name="BackBtn2" HorizontalAlignment="Left" Background="SlateGray" Margin="0,420,0,0" VerticalAlignment="Top" Click="BackBtn_Click"/>
         </Grid>
+
+        <Grid Name ="ParametersBoxOrder" Visibility="Hidden"  Grid.Column="1" Margin="23,30,19,30" HorizontalAlignment="Center" Width="226" >
+            <Button Content="Help" x:Name="HelpBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Click="HelpBtn_Click"/>
+            <Button Content="Final War" x:Name="FinalWarBtn" HorizontalAlignment="Left" Margin="0,70,0,0" VerticalAlignment="Top" Click="FinalWarBtn_Click"/>
+            <Button Content="EvacScience" x:Name="EvacScience" HorizontalAlignment="Left" Margin="0,140,0,0" VerticalAlignment="Top" Click="EvacScience_Click" />
+            <Button Content="EvacSurvivors" x:Name="EvacSurvivors" HorizontalAlignment="Left" Margin="0,210,0,0" VerticalAlignment="Top" Click="EvacSurvivors_Click"/>
+            <Button Content="Retreat" x:Name="Retreat" HorizontalAlignment="Left" Margin="0,280,0,0" VerticalAlignment="Top" Click="Retreat_Click"/>
+            <Button Content="Back" x:Name="BackBtn5" HorizontalAlignment="Left" Background="SlateGray" Margin="0,420,0,0" VerticalAlignment="Top" Click="BackBtn_Click"/>
+        </Grid>
+
+        <Grid Name ="ValuesBoxOrder" Visibility="Hidden"  Grid.Column="1" Margin="23,30,19,30" HorizontalAlignment="Center" Width="226" >
+            <Button Content="Chaarr" x:Name="VChaarrBtn" HorizontalAlignment="Left" VerticalAlignment="Top" Click="VChaarrBtn_Click"/>
+            <Button Content="Esthajnalcsillag" x:Name="VEsthBtn" HorizontalAlignment="Left" Margin="0,70,0,0" VerticalAlignment="Top" Click="VEsthBtn_Click"/>
+            <Button Content="Shuttle" x:Name="VShuttleBtn" HorizontalAlignment="Left" Margin="0,140,0,0" VerticalAlignment="Top" Click="VShuttleBtn_Click" />
+            <Button Content="Asteroids" x:Name="VAsteroidsBtn" HorizontalAlignment="Left" Margin="0,210,0,0" VerticalAlignment="Top" Click="VAsteroidsBtn_Click"/>
+            <Button Content="Południca" x:Name="VPoludnicaBtn" HorizontalAlignment="Left" Margin="0,280,0,0" VerticalAlignment="Top" Click="VPoludnicaBtn_Click"/>
+            <Button Content="Back" x:Name="VBackBtn" Background="SlateGray" HorizontalAlignment="Left" Margin="0,420,0,0" VerticalAlignment="Top" Click="BackBtn_Click"/>
+        </Grid>
+
+
+
 
         <Grid Name ="Results" Grid.Column="2" Margin="10,10,59,30" HorizontalAlignment="Center" Width="548">
             <Rectangle HorizontalAlignment="Left" Height="235" Margin="15,117,0,0" Stroke="White" VerticalAlignment="Top" Width="204"/>
