@@ -39,12 +39,16 @@ namespace UrbeliKuldetes
         private string value = null;
 
 
-        public MainWindow ( )
+        public MainWindow ( string login, string token, string simulationOrChaarr)
         {
             InitializeComponent ( );
             endpoint = $"https://simulation.future-processing.pl/execute";
             this.Title = "Space Mission";
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            MessageBox.Show ( login );
+            MessageBox.Show ( token );
+            MessageBox.Show ( simulationOrChaarr );
+
         }
         private void Window_MouseLeftButtonDown ( object sender, MouseButtonEventArgs e )
         {
