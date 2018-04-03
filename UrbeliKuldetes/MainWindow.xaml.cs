@@ -25,12 +25,9 @@ namespace UrbeliKuldetes
     /// </summary>
     public partial class MainWindow : Window
     {
-        // TODO: manage login and token better, somehow
-        // and manage the endpoint - a toggle switch ?
-        // TODO: delete login and token out of here, it should be only temporary
-        private static string Login = "agata.szysz@gmail.com.google";
-        private static string Token = "40FEBC05C9F74D4F53503794F1368B6A";
-        private string endpoint;
+        private static string Login;
+        private static string Token;
+        private static string SimulationOrChaarr;
         private Commands command;
         private Parameters parameter;
         private Result result;
@@ -39,21 +36,20 @@ namespace UrbeliKuldetes
         private string value = null;
 
 
-        public MainWindow ( string login, string token, string simulationOrChaarr)
+        public MainWindow ( string _login, string _token, string _simulationOrChaarr)
         {
             InitializeComponent ( );
-            endpoint = $"https://simulation.future-processing.pl/execute";
+            Login = _login;
+            Token = _token;
+            SimulationOrChaarr = _simulationOrChaarr;
             this.Title = "Space Mission";
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            MessageBox.Show ( login );
-            MessageBox.Show ( token );
-            MessageBox.Show ( simulationOrChaarr );
 
         }
         private void Window_MouseLeftButtonDown ( object sender, MouseButtonEventArgs e )
         {
             CurrentRequest.Text = command.ToString ( ) + "\n" + parameter.ToString ( )+"\n"+value;
-            result = DescribeExecutor.Describe ( Login, Token );
+            result = DescribeExecutor.Describe ( Login, Token, SimulationOrChaarr);
             UpdateInfo ( result );
         }
         #region Commands buttons
@@ -178,7 +174,7 @@ namespace UrbeliKuldetes
         }
         #endregion
 
-        #region Communication buttons
+        #region Communication 
         private void BackBtn_Click ( object sender, RoutedEventArgs e )
         {
             SetVisibility ( ParametersBox, Visibility.Hidden );
@@ -195,8 +191,8 @@ namespace UrbeliKuldetes
         private void RestartBtn_Click ( object sender, RoutedEventArgs e )
         {
             MessageBox.Show ( "Your simulation will be restarted now " );
-            var restarter = new CommandsExecutor ( );
-            result = restarter.RestartSimulation ( endpoint );
+            var restarter = new CommandsExecutor (Login, Token, SimulationOrChaarr );
+            result = restarter.RestartSimulation ( );
             if ( result != null )
             {
                 UpdateInfo ( result );
@@ -205,14 +201,15 @@ namespace UrbeliKuldetes
 
         private void SendRequestBtn_Click ( object sender, RoutedEventArgs e )
         {
-                var executor = new CommandsExecutor ( );
-                result = executor.Execute ( endpoint, command, parameter, this.value);
+                var executor = new CommandsExecutor ( Login, Token, SimulationOrChaarr );
+                result = executor.Execute ( command, parameter, this.value);
                 if ( result != null )
                 {
                     UpdateInfo ( result );
                 }
        
         }
+
         #endregion
 
         #region Updating and cleaning info

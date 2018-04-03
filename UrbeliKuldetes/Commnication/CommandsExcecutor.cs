@@ -10,16 +10,25 @@ namespace UrbeliKuldetes.Commnication
 {
     class CommandsExecutor
     {
-        private static string Login = "agata.szysz@gmail.com.google";
-        private static string Token = "40FEBC05C9F74D4F53503794F1368B6A";
         private static Commands restart = Commands.Restart;
-
-        public Result Execute ( string endpoint, Commands command, Parameters parameter, string value )
+        private static string Login { get; set; }
+        private static string Token { get; set; }
+        private static string SimulationOrChaarr { get; set; }
+        public CommandsExecutor(string _login, string _token, string _simOrChaarr)
+        {
+            Login = _login;
+            Token = _token;
+            SimulationOrChaarr = _simOrChaarr;
+        }
+        public Result Execute ( Commands command, Parameters parameter, string value )
         {
             // Use SecurityProtocolType.T1sl2 if needed for compatibility reasons
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+
             var payload = new PayloadCreator ( command, parameter, value, Login, Token ).ToJson ( );
+            string endpoint = CreateEndpoint ( SimulationOrChaarr );
             var client = new RestClient ( endpoint );
             var request = new RestRequest ( );
             request = RequestCreator.CreatePOSTRequest ( payload );
@@ -27,7 +36,7 @@ namespace UrbeliKuldetes.Commnication
             if ( response.StatusCode == HttpStatusCode.OK )
             {
                 //var describeClient = new DescribeExecutor ( ); ????????????????????????
-                var result = DescribeExecutor.Describe ( Login, Token );
+                var result = DescribeExecutor.Describe ( Login, Token , SimulationOrChaarr);
                 return result;
             }
             else
@@ -37,11 +46,14 @@ namespace UrbeliKuldetes.Commnication
             }
         }
 
-        public Result RestartSimulation (string endpoint)
+        public Result RestartSimulation ()
         {
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+
             var payload = new PayloadCreator ( restart, Login, Token ).ToJson ( );
+            string endpoint = CreateEndpoint ( SimulationOrChaarr );
             var client = new RestClient ( endpoint );
             var request = new RestRequest ( );
             request = RequestCreator.CreatePOSTRequest ( payload );
@@ -49,7 +61,7 @@ namespace UrbeliKuldetes.Commnication
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 //var describeClient = new DescribeExecutor ( ); ????????????????????????????
-                var result = DescribeExecutor.Describe ( Login, Token );
+                var result = DescribeExecutor.Describe ( Login, Token, SimulationOrChaarr );
                 return result;
             }
             else
@@ -58,6 +70,10 @@ namespace UrbeliKuldetes.Commnication
                 return null;
             }
 
+        }
+        private string CreateEndpoint ( string simOrChaarr )
+        {
+            return "https://" + simOrChaarr + ".future-processing.pl/execute";
         }
 
     }
