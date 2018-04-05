@@ -34,7 +34,7 @@ namespace UrbeliKuldetes
         private Params resultParams = new Params ( );
         private Scores resultScores = new Scores ( );
         private string value = null;
-
+        //private CommandsExecutor executor= new CommandsExecutor ( Login, Token, SimulationOrChaarr );
 
         public MainWindow ( string _login, string _token, string _simulationOrChaarr)
         {
@@ -191,7 +191,7 @@ namespace UrbeliKuldetes
         private void RestartBtn_Click ( object sender, RoutedEventArgs e )
         {
             MessageBox.Show ( "Your simulation will be restarted now " );
-            var restarter = new CommandsExecutor (Login, Token, SimulationOrChaarr );
+            var restarter = new CommandsExecutor ( Login, Token, SimulationOrChaarr );
             result = restarter.RestartSimulation ( );
             if ( result != null )
             {
@@ -201,8 +201,8 @@ namespace UrbeliKuldetes
 
         private void SendRequestBtn_Click ( object sender, RoutedEventArgs e )
         {
-                var executor = new CommandsExecutor ( Login, Token, SimulationOrChaarr );
-                result = executor.Execute ( command, parameter, this.value);
+            var executor = new CommandsExecutor ( Login, Token, SimulationOrChaarr );
+            result = executor.Execute ( command, parameter, this.value);
                 if ( result != null )
                 {
                     UpdateInfo ( result );

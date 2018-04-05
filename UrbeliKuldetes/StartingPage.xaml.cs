@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using UrbeliKuldetes.Commnication;
+using UrbeliKuldetes.Loggers;
 
 namespace UrbeliKuldetes
 {
@@ -37,6 +38,7 @@ namespace UrbeliKuldetes
         {
             simulationOrChaarr = "simulation";
             ShowSubmitBtnIfLoginAndTokenNotEmpty ( );
+
         }
 
         private void ChaarrBtn_Click ( object sender, RoutedEventArgs e )

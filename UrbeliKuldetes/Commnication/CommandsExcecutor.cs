@@ -5,6 +5,7 @@ using UrbeliKuldetes.CreatingRequests;
 using System.Net;
 using System;
 using System.Windows;
+using UrbeliKuldetes.Loggers;
 
 namespace UrbeliKuldetes.Commnication
 {
@@ -14,6 +15,7 @@ namespace UrbeliKuldetes.Commnication
         private static string Login { get; set; }
         private static string Token { get; set; }
         private static string SimulationOrChaarr { get; set; }
+        Logger logger = new Logger ( );
         public CommandsExecutor(string _login, string _token, string _simOrChaarr)
         {
             Login = _login;
@@ -26,7 +28,6 @@ namespace UrbeliKuldetes.Commnication
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
-
             var payload = new PayloadCreator ( command, parameter, value, Login, Token ).ToJson ( );
             string endpoint = CreateEndpoint ( SimulationOrChaarr );
             var client = new RestClient ( endpoint );
@@ -37,6 +38,7 @@ namespace UrbeliKuldetes.Commnication
             {
                 //var describeClient = new DescribeExecutor ( ); ????????????????????????
                 var result = DescribeExecutor.Describe ( Login, Token , SimulationOrChaarr);
+                logger.PrepareDataToWrite ( result, command.ToString(), parameter.ToString(), value );
                 return result;
             }
             else
@@ -51,6 +53,7 @@ namespace UrbeliKuldetes.Commnication
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
+            logger.WriteToFile ( );
 
             var payload = new PayloadCreator ( restart, Login, Token ).ToJson ( );
             string endpoint = CreateEndpoint ( SimulationOrChaarr );
@@ -73,7 +76,7 @@ namespace UrbeliKuldetes.Commnication
         }
         private string CreateEndpoint ( string simOrChaarr )
         {
-            return "https://" + simOrChaarr + ".future-processing.pl/execute";
+            return $"https://{simOrChaarr}.future-processing.pl/execute";
         }
 
     }
