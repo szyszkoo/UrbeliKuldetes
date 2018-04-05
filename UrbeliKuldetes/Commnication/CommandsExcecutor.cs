@@ -15,7 +15,6 @@ namespace UrbeliKuldetes.Commnication
         private static string Login { get; set; }
         private static string Token { get; set; }
         private static string SimulationOrChaarr { get; set; }
-        Logger logger = new Logger ( );
         public CommandsExecutor(string _login, string _token, string _simOrChaarr)
         {
             Login = _login;
@@ -38,12 +37,17 @@ namespace UrbeliKuldetes.Commnication
             {
                 //var describeClient = new DescribeExecutor ( ); ????????????????????????
                 var result = DescribeExecutor.Describe ( Login, Token , SimulationOrChaarr);
-                logger.PrepareDataToWrite ( result, command.ToString(), parameter.ToString(), value );
+                Logger.PrepareDataToWrite ( result, command.ToString(), parameter.ToString(), value );
+                if(result.IsTerminated)
+                {
+                    MessageBox.Show ( "GAME OVER, YOU LOST. Your simulation will be restarted now. Good luck!" );
+                    RestartSimulation ( );
+                }
                 return result;
             }
             else
             {
-                MessageBox.Show ( response.ErrorMessage );
+                MessageBox.Show ( response.ErrorMessage + response.Content );
                 return null;
             }
         }
@@ -53,7 +57,7 @@ namespace UrbeliKuldetes.Commnication
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
-            logger.WriteToFile ( );
+            Logger.WriteToFile ( );
 
             var payload = new PayloadCreator ( restart, Login, Token ).ToJson ( );
             string endpoint = CreateEndpoint ( SimulationOrChaarr );
@@ -65,7 +69,11 @@ namespace UrbeliKuldetes.Commnication
             {
                 //var describeClient = new DescribeExecutor ( ); ????????????????????????????
                 var result = DescribeExecutor.Describe ( Login, Token, SimulationOrChaarr );
-                return result;
+                if ( result != null )
+                {
+                    return result;
+                }
+                else return null;
             }
             else
             {

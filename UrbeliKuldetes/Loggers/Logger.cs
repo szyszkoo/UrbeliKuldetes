@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 using System.Windows;
 using Newtonsoft.Json;
 using UrbeliKuldetes.Models;
+using System.IO;
 
 namespace UrbeliKuldetes.Loggers
 {
     class Logger
     {
-        private List<string> listOfLogsToWrite = new List<string> ( );
-        public void PrepareDataToWrite ( Result resultToWrite, string commandUsed, string parameterUsed, string valueUsed )
+        private static List<string> listOfLogsToWrite = new List<string> ( );
+        public static void PrepareDataToWrite ( Result resultToWrite, string commandUsed, string parameterUsed, string valueUsed )
         {
             StringBuilder logFromOneTurn = new StringBuilder ( );
             logFromOneTurn.AppendLine ( "======================================================================================" );
@@ -29,28 +30,24 @@ namespace UrbeliKuldetes.Loggers
                 logFromOneTurn.AppendLine ( valueUsed );
             }
             logFromOneTurn.AppendLine ( );
-            logFromOneTurn.AppendLine ( JsonConvert.SerializeObject ( resultToWrite ) );
-
+            logFromOneTurn.AppendLine ( JsonConvert.SerializeObject ( resultToWrite ,Formatting.Indented)  );
+            //string json = JsonConvert.SerializeObject ( listOfLogsToWrite.ToArray ( ), Formatting.Indented );
+            
             listOfLogsToWrite.Add ( logFromOneTurn.ToString ( ) );
             
         }
 
-        public void WriteToFile ()
+        public static void WriteToFile ()
         {
-            System.IO.StreamWriter logsFile = new System.IO.StreamWriter ( @".\Logs.txt");
-            foreach (var log in listOfLogsToWrite)
+
+            StreamWriter logsFile = new StreamWriter ( @".\Logs.txt" );
+            foreach ( var log in listOfLogsToWrite )
             {
                 logsFile.WriteLine ( log );
             }
-
             logsFile.Close ( );
-        }
-        //private void WriteResultToLog(Result resultToWriteToLog, List<string> listOfLogs)
-        //{
 
-        //}
-        
-
+        }     
 
     }
 }

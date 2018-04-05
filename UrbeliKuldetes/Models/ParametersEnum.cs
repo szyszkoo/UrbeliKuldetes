@@ -10,7 +10,7 @@ namespace UrbeliKuldetes.Models
     {
         //places
         Chaarr,
-        Esth,
+        Esthajnalcsillag,
         Shuttle,
         Asteroids,
         Południca, 

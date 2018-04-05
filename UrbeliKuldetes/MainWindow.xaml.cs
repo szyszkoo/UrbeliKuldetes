@@ -105,7 +105,7 @@ namespace UrbeliKuldetes
 
         private void EsthBtn_Click ( object sender, RoutedEventArgs e )
         {
-            SetParameter ( Parameters.Esth );
+            SetParameter ( Parameters.Esthajnalcsillag );
         }
 
         private void ShuttleBtn_Click ( object sender, RoutedEventArgs e )
@@ -347,7 +347,7 @@ namespace UrbeliKuldetes
 
         private void VEsthBtn_Click ( object sender, RoutedEventArgs e )
         {
-            SetValueForOrderCommand ( Parameters.Esth );
+            SetValueForOrderCommand ( Parameters.Esthajnalcsillag );
         }
 
         private void VShuttleBtn_Click ( object sender, RoutedEventArgs e )
