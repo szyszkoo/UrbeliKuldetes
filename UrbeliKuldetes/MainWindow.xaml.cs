@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UrbeliKuldetes.Commnication;
 using UrbeliKuldetes.CreatingPayload;
+using UrbeliKuldetes.Loggers;
 using UrbeliKuldetes.Models;
 using UrbeliKuldetes.Models.ResponseModel;
 
@@ -51,6 +52,13 @@ namespace UrbeliKuldetes
             CurrentRequest.Text = command.ToString ( ) + "\n" + parameter.ToString ( )+"\n"+value;
             result = DescribeExecutor.Describe ( Login, Token, SimulationOrChaarr);
             UpdateInfo ( result );
+        }
+        private void Window_Loaded ( object sender, RoutedEventArgs e )
+        {
+            CurrentRequest.Text = command.ToString ( ) + "\n" + parameter.ToString ( ) + "\n" + value;
+            result = DescribeExecutor.Describe ( Login, Token, SimulationOrChaarr );
+            UpdateInfo ( result );
+            Logger.PrepareDataToWrite ( result, null, null, null );
         }
         #region Commands buttons
         private void ScanBtn_Click ( object sender, RoutedEventArgs e )
@@ -365,5 +373,7 @@ namespace UrbeliKuldetes
             SetValueForOrderCommand ( Parameters.Południca );
         }
         #endregion
+
+
     }
 }

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UrbeliKuldetes"
         mc:Ignorable="d"
+        Loaded="Window_Loaded"
         MouseLeftButtonUp="Window_MouseLeftButtonDown"
         Title="Urbeli Kuldetes - Space Mission" Height="800" Width="1200" ResizeMode="NoResize" Icon="./Pictures/rocket-icon.png">
 
@@ -164,7 +165,7 @@
             <Label Content="LOGBOOK" HorizontalAlignment="Left" Height="42" Margin="74,5,0,0" VerticalAlignment="Top" Width="93"/>
             <Rectangle HorizontalAlignment="Left"  Margin="11,7,0,0" Stroke="White" VerticalAlignment="Top" Width="285" Height="360"/>
             <ScrollViewer HorizontalAlignment="Left" Height="325" Margin="10,35,0,0"  VerticalAlignment="Top" Width="276">
-                <TextBlock x:Name="Logs" FontSize="10" TextWrapping="Wrap"  Height="1083" Width="239"/>
+                <TextBlock x:Name="Logs" FontSize="10" TextWrapping="Wrap"  Height="4440" Width="239"/>
 
             </ScrollViewer>
         </Grid>

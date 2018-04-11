@@ -20,17 +20,26 @@ namespace UrbeliKuldetes.Loggers
             logFromOneTurn.AppendLine ( "======================================================================================" );
             logFromOneTurn.AppendLine ( "N E W    T U R N " );
             logFromOneTurn.AppendLine ( "======================================================================================" );
-            logFromOneTurn.Append ( "Command used: " );
-            logFromOneTurn.AppendLine ( commandUsed );
-            logFromOneTurn.Append ( "Parameter used: " );
-            logFromOneTurn.AppendLine ( parameterUsed );
+            if(commandUsed!= null)
+            {
+                logFromOneTurn.Append ( "Command used: " );
+                logFromOneTurn.AppendLine ( commandUsed );
+            }
+            if ( parameterUsed != null )
+            {
+                logFromOneTurn.Append ( "Parameter used: " );
+                logFromOneTurn.AppendLine ( parameterUsed );
+            }
             if ( valueUsed != null )
             {
                 logFromOneTurn.Append ( "Value used: " );
                 logFromOneTurn.AppendLine ( valueUsed );
             }
             logFromOneTurn.AppendLine ( );
-            logFromOneTurn.AppendLine ( JsonConvert.SerializeObject ( resultToWrite ,Formatting.Indented)  );
+            resultToWrite.Events = null;
+            var tempResultAsStr = JsonConvert.SerializeObject ( resultToWrite, Formatting.Indented );
+            tempResultAsStr = tempResultAsStr.Replace ( @"""Events"": null,", "" );
+            logFromOneTurn.AppendLine ( tempResultAsStr  );
             //string json = JsonConvert.SerializeObject ( listOfLogsToWrite.ToArray ( ), Formatting.Indented );
             
             listOfLogsToWrite.Add ( logFromOneTurn.ToString ( ) );
