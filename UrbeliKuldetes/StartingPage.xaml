@@ -13,7 +13,10 @@
             <Setter Property="FontFamily" Value="Consolas"/>
             <Setter Property="Width" Value="130.5"/>
             <Setter Property="Height" Value="60"/>
-            <Setter Property="Background" Value="Gainsboro"/>
+            <Setter Property="Background" Value="{x:Null}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#FF2D4B6D"/>
+            <Setter Property="BorderThickness" Value="3"/>
         </Style>
         <Style TargetType="Label">
             <Setter Property="FontSize" Value=" 20"/>
@@ -39,19 +42,19 @@
             <Label Content="URBELI KULDETES" FontSize="60" Height="86.5" Margin="32,10,34,0" VerticalAlignment="Top"/>
         </Grid>
 
-        <Grid Name="LoginAndToken" Height="97" VerticalAlignment="Top" Margin="22.5,122,22.5,0">
-            <TextBox Name="LoginTextBox" TextChanged="LoginTextBox_TextChanged" Height="20" Margin="109.34,10,67.994,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
+        <Grid Name="LoginAndToken" Height="97" VerticalAlignment="Top" Margin="39,150.5,6,0">
+            <TextBox Name="LoginTextBox" TextChanged="LoginTextBox_TextChanged" Height="20" Margin="109.34,8.5,67.994,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
             <TextBox Name="TokenTextBox" TextChanged="TokenTextBox_TextChanged" Height="20" Margin="109.34,50,67.994,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
-            <Label Content="Login"  HorizontalAlignment="Left" Height="44" Margin="17.168,1,0,0" VerticalAlignment="Top" Width="77.839"/>
-            <Label Content="Token" HorizontalAlignment="Left" Height="34" Margin="17.168,45,0,0" VerticalAlignment="Top" Width="77.839"/>
+            <Label Content="Login"  HorizontalAlignment="Left" Height="44" Margin="11.168,-0.5,0,0" VerticalAlignment="Top" Width="77.839"/>
+            <Label Content="Token" HorizontalAlignment="Left" Height="34" Margin="11.168,45,0,0" VerticalAlignment="Top" Width="77.839"/>
 
         </Grid>
 
-        <Grid Name="SimulationOrChaarr" Margin="22.5,265,22.5,47">
+        <Grid Name="SimulationOrChaarr" Margin="22.5,268,22.5,44">
             <Label FontSize="17.5" Content="Where do you want to begin your experiment?" Height="40" Margin="47,20,59.5,0" VerticalAlignment="Top"/>
             <Button Name="SimulationBtn" Content="Simulation" Click="SimulationBtn_Click" HorizontalAlignment="Left" Margin="114,84,0,0" VerticalAlignment="Top" d:LayoutOverrides="Height" />
             <Button Name="ChaarrBtn" Content="Chaarr" Click="ChaarrBtn_Click" HorizontalAlignment="Right" Margin="0,84,113.5,0" VerticalAlignment="Top" d:LayoutOverrides="Height"/>
-            <Button Name="SubmitBtn" Visibility="Hidden" Content="Submit" Click ="SubmitBtn_Click" Margin="0,0,113.5,0" VerticalAlignment="Bottom" Height="40" HorizontalAlignment="Right" Background="SlateGray"/>
+            <Button Name="SubmitBtn" Visibility="Hidden" Content="Submit" Click ="SubmitBtn_Click" Margin="0,0,113.5,0" VerticalAlignment="Bottom" Height="40" HorizontalAlignment="Right" BorderBrush="#FFC3674C"/>
             <Label Name="WarningLbl" Content="Please enter your login and token first!" Visibility="Hidden" Height="39" Margin="47,0,46,40" VerticalAlignment="Bottom"/>
 
         </Grid>

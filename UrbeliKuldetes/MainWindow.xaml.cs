@@ -40,6 +40,7 @@ namespace UrbeliKuldetes
         public MainWindow ( string _login, string _token, string _simulationOrChaarr)
         {
             InitializeComponent ( );
+            mainWndw.Height = 0.8 *SystemParameters.PrimaryScreenHeight;
             Login = _login;
             Token = _token;
             SimulationOrChaarr = _simulationOrChaarr;
