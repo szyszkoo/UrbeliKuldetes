@@ -35,12 +35,11 @@ namespace UrbeliKuldetes.Commnication
             IRestResponse response = client.Execute ( request );
             if ( response.StatusCode == HttpStatusCode.OK )
             {
-                //var describeClient = new DescribeExecutor ( ); ????????????????????????
                 var result = DescribeExecutor.Describe ( Login, Token , SimulationOrChaarr);
                 Logger.PrepareDataToWrite ( result, command.ToString(), parameter.ToString(), value );
                 if(result.IsTerminated)
                 {
-                    MessageBox.Show ( "GAME OVER, YOU LOST. Your simulation will be restarted now. Good luck!" );
+                    MessageBox.Show ( "GAME OVER. Your simulation will be restarted now. Good luck!" );
                     RestartSimulation ( );
                 }
                 return result;
@@ -67,7 +66,6 @@ namespace UrbeliKuldetes.Commnication
             IRestResponse response = client.Execute ( request );
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                //var describeClient = new DescribeExecutor ( ); ????????????????????????????
                 var result = DescribeExecutor.Describe ( Login, Token, SimulationOrChaarr );
                 if ( result != null )
                 {

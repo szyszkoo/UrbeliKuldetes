@@ -13,13 +13,13 @@ namespace UrbeliKuldetes.Commnication
 {
     class DescribeExecutor
     {
-        public static Result Describe(string login, string token, string simOrChaarr)
+        public static Result Describe ( string login, string token, string simOrChaarr )
         {
             // Use SecurityProtocolType.T1sl2 if needed for compatibility reasons
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
-            string describeEndpoint = "https://" + simOrChaarr + ".future-processing.pl/describe?login=" + login + "&token=" + token;
+            string describeEndpoint = $"https://{ simOrChaarr}.future-processing.pl/describe?login={ login }&token={token}";
             var describeClient = new RestClient (describeEndpoint);
             var describeRequest = RequestCreator.CreateGETRequest();
             IRestResponse describeResponse = describeClient.Execute ( describeRequest );

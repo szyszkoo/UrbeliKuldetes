@@ -39,9 +39,7 @@ namespace UrbeliKuldetes.Loggers
             resultToWrite.Events = null;
             var tempResultAsStr = JsonConvert.SerializeObject ( resultToWrite, Formatting.Indented );
             tempResultAsStr = tempResultAsStr.Replace ( @"""Events"": null,", "" );
-            logFromOneTurn.AppendLine ( tempResultAsStr  );
-            //string json = JsonConvert.SerializeObject ( listOfLogsToWrite.ToArray ( ), Formatting.Indented );
-            
+            logFromOneTurn.AppendLine ( tempResultAsStr  );            
             listOfLogsToWrite.Add ( logFromOneTurn.ToString ( ) );
             
         }

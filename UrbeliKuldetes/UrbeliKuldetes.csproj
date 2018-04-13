@@ -100,7 +100,6 @@
     <Compile Include="Models\ResponseModel\Params.cs" />
     <Compile Include="Models\ResponseModel\Result.cs" />
     <Compile Include="Models\ResponseModel\Scores.cs" />
-    <Compile Include="Prog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

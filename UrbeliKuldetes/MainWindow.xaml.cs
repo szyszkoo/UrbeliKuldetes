@@ -21,9 +21,6 @@ using UrbeliKuldetes.Models.ResponseModel;
 
 namespace UrbeliKuldetes
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private static string Login;
@@ -35,12 +32,10 @@ namespace UrbeliKuldetes
         private Params resultParams = new Params ( );
         private Scores resultScores = new Scores ( );
         private string value = null;
-        //private CommandsExecutor executor= new CommandsExecutor ( Login, Token, SimulationOrChaarr );
 
         public MainWindow ( string _login, string _token, string _simulationOrChaarr)
         {
             InitializeComponent ( );
-            mainWndw.Height = 0.8 *SystemParameters.PrimaryScreenHeight;
             Login = _login;
             Token = _token;
             SimulationOrChaarr = _simulationOrChaarr;
@@ -66,12 +61,6 @@ namespace UrbeliKuldetes
         {
             SetVisibility ( ParametersBox, Visibility.Visible );
             SetCommand ( Commands.Scan );
-        }
-
-        // TODO : delete this method without errors
-        private void MoveTo_Click ( object sender, RoutedEventArgs e )
-        {
-            // should be deleted 
         }
 
         private void MoveToBtn_Click ( object sender, RoutedEventArgs e )
@@ -172,14 +161,73 @@ namespace UrbeliKuldetes
             SetParameter ( Parameters.Communications );
         }
 
-        private void ShuttleRBtn_Click ( object sender, RoutedEventArgs e )
-        {
-            //should be deleted
-        }
-
         private void PartialShuttleBtn_Click ( object sender, RoutedEventArgs e )
         {
             SetParameter ( Parameters.Partialshuttle );
+        }
+        #endregion
+
+        #region Parameters for Order
+        private void HelpBtn_Click ( object sender, RoutedEventArgs e )
+        {
+            SetParameter ( Parameters.Help );
+            SetVisibility ( ParametersBoxOrder, Visibility.Hidden );
+            SetVisibility ( ValuesBoxOrder, Visibility.Visible );
+        }
+
+        private void FinalWarBtn_Click ( object sender, RoutedEventArgs e )
+        {
+            SetParameter ( Parameters.FinalWar );
+            SetVisibility ( ParametersBoxOrder, Visibility.Hidden );
+            SetVisibility ( ValuesBoxOrder, Visibility.Visible );
+        }
+
+        private void EvacScience_Click ( object sender, RoutedEventArgs e )
+        {
+            SetParameter ( Parameters.EvacScience );
+            SetVisibility ( ParametersBoxOrder, Visibility.Hidden );
+            SetVisibility ( ValuesBoxOrder, Visibility.Visible );
+        }
+
+        private void EvacSurvivors_Click ( object sender, RoutedEventArgs e )
+        {
+            SetParameter ( Parameters.EvacSurvivors );
+            SetVisibility ( ParametersBoxOrder, Visibility.Hidden );
+            SetVisibility ( ValuesBoxOrder, Visibility.Visible );
+        }
+
+        private void Retreat_Click ( object sender, RoutedEventArgs e )
+        {
+            SetParameter ( Parameters.Retreat );
+            SetVisibility ( ParametersBoxOrder, Visibility.Hidden );
+            SetVisibility ( ValuesBoxOrder, Visibility.Visible );
+        }
+        #endregion
+
+        #region Values for Order
+        private void VChaarrBtn_Click ( object sender, RoutedEventArgs e )
+        {
+            SetValueForOrderCommand ( Parameters.Chaarr );
+        }
+
+        private void VEsthBtn_Click ( object sender, RoutedEventArgs e )
+        {
+            SetValueForOrderCommand ( Parameters.Esthajnalcsillag );
+        }
+
+        private void VShuttleBtn_Click ( object sender, RoutedEventArgs e )
+        {
+            SetValueForOrderCommand ( Parameters.Shuttle );
+        }
+
+        private void VAsteroidsBtn_Click ( object sender, RoutedEventArgs e )
+        {
+            SetValueForOrderCommand ( Parameters.Asteroids );
+        }
+
+        private void VPoludnicaBtn_Click ( object sender, RoutedEventArgs e )
+        {
+            SetValueForOrderCommand ( Parameters.Południca );
         }
         #endregion
 
@@ -256,12 +304,9 @@ namespace UrbeliKuldetes
             Location.Text = "";
             IsItOver.Text = "";
         }
-
-
         private void UpdateParamsValues(Params receivedParams)
         {
             StringBuilder paramsValues = new StringBuilder ( );
-            //"0.##" -> displays a number without decimal places
             paramsValues.AppendLine( receivedParams.SavedScience.ToString ( "0.##" ) );
             paramsValues.AppendLine( receivedParams.SavedSurvivors.ToString ( "0.##" ) );
             paramsValues.AppendLine( receivedParams.Knowledge.ToString ( "0.##" ) );
@@ -279,7 +324,7 @@ namespace UrbeliKuldetes
         private void UpdateScoresValues(Scores receivedScores)
         {
             StringBuilder scoresValues = new StringBuilder ( );
-            //"0.##" -> displays a number without decimal places
+            
             scoresValues.AppendLine ( receivedScores.SurvivorsScore.ToString ( "0.##" ) );
             scoresValues.AppendLine ( receivedScores.ScienceScore.ToString ( "0.##" ) );
             scoresValues.AppendLine ( receivedScores.CrewMalus.ToString ( "0.##" ) );
@@ -312,69 +357,6 @@ namespace UrbeliKuldetes
             this.value = valueForOrderCommand.ToString ( );
         }
         #endregion
-        #region Parameters for Order
-        private void HelpBtn_Click ( object sender, RoutedEventArgs e )
-        {
-            SetParameter ( Parameters.Help );
-            SetVisibility ( ParametersBoxOrder, Visibility.Hidden );
-            SetVisibility ( ValuesBoxOrder, Visibility.Visible );
-        }
-
-        private void FinalWarBtn_Click ( object sender, RoutedEventArgs e )
-        {
-            SetParameter ( Parameters.FinalWar );
-            SetVisibility ( ParametersBoxOrder, Visibility.Hidden );
-            SetVisibility ( ValuesBoxOrder, Visibility.Visible );
-        }
-
-        private void EvacScience_Click ( object sender, RoutedEventArgs e )
-        {
-            SetParameter ( Parameters.EvacScience );
-            SetVisibility ( ParametersBoxOrder, Visibility.Hidden );
-            SetVisibility ( ValuesBoxOrder, Visibility.Visible );
-        }
-
-        private void EvacSurvivors_Click ( object sender, RoutedEventArgs e )
-        {
-            SetParameter ( Parameters.EvacSurvivors );
-            SetVisibility ( ParametersBoxOrder, Visibility.Hidden );
-            SetVisibility ( ValuesBoxOrder, Visibility.Visible );
-        }
-
-        private void Retreat_Click ( object sender, RoutedEventArgs e )
-        {
-            SetParameter ( Parameters.Retreat );
-            SetVisibility ( ParametersBoxOrder, Visibility.Hidden );
-            SetVisibility ( ValuesBoxOrder, Visibility.Visible );
-        }
-        #endregion
-        #region Values for Order
-        private void VChaarrBtn_Click ( object sender, RoutedEventArgs e )
-        {
-            SetValueForOrderCommand ( Parameters.Chaarr );
-        }
-
-        private void VEsthBtn_Click ( object sender, RoutedEventArgs e )
-        {
-            SetValueForOrderCommand ( Parameters.Esthajnalcsillag );
-        }
-
-        private void VShuttleBtn_Click ( object sender, RoutedEventArgs e )
-        {
-            SetValueForOrderCommand ( Parameters.Shuttle );
-        }
-
-        private void VAsteroidsBtn_Click ( object sender, RoutedEventArgs e )
-        {
-            SetValueForOrderCommand ( Parameters.Asteroids );
-        }
-
-        private void VPoludnicaBtn_Click ( object sender, RoutedEventArgs e )
-        {
-            SetValueForOrderCommand ( Parameters.Południca );
-        }
-        #endregion
-
 
     }
 }
